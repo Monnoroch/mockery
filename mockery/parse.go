@@ -76,6 +76,9 @@ func (p *Parser) Parse(path string) error {
 		if err != nil {
 			return err
 		}
+
+		fmt.Printf("DEBUG: Found packages %v\n", pkgs)
+
 		if len(pkgs) == 0 {
 			continue
 		}
@@ -96,6 +99,8 @@ func (p *Parser) Parse(path string) error {
 		}
 
 		for idx, f := range pkg.GoFiles {
+			fmt.Printf("DEBUG: Found go file %v\n", f)
+
 			if _, ok := p.entriesByFileName[f]; ok {
 				continue
 			}
