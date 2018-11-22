@@ -86,6 +86,7 @@ func (this *Walker) doWalk(p *Parser, dir string, visitor WalkerVisitor) (genera
 
 		err = p.Parse(path)
 		if err != nil {
+			fmt.Printf("DEBUG: Parse error %s -- %v\n", path, err)
 			fmt.Fprintln(os.Stderr, "Error parsing file: ", err)
 			continue
 		}
