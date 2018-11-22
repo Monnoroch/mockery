@@ -32,6 +32,7 @@ func (this *Walker) Walk(visitor WalkerVisitor) (generated bool) {
 		os.Exit(1)
 	}
 
+	fmt.Printf("DEBUG: Found interfaces %d\n", len(parser.Interfaces()))
 	for _, iface := range parser.Interfaces() {
 		fmt.Printf("DEBUG: Found interface %s\n", iface)
 
