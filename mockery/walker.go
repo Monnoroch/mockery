@@ -51,7 +51,7 @@ func (this *Walker) Walk(visitor WalkerVisitor) (generated bool) {
 }
 
 func (this *Walker) doWalk(p *Parser, dir string, visitor WalkerVisitor) (generated bool) {
-	fmt.Printlf("DEBUG: Walk dir %s\n", dir)
+	fmt.Printf("DEBUG: Walk dir %s\n", dir)
 
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
@@ -60,7 +60,7 @@ func (this *Walker) doWalk(p *Parser, dir string, visitor WalkerVisitor) (genera
 
 
 	for _, file := range files {
-		fmt.Printlf("DEBUG: Found file %s\n", file.Name())
+		fmt.Printf("DEBUG: Found file %s\n", file.Name())
 
 		if strings.HasPrefix(file.Name(), ".") || strings.HasPrefix(file.Name(), "_") {
 			continue
@@ -82,7 +82,7 @@ func (this *Walker) doWalk(p *Parser, dir string, visitor WalkerVisitor) (genera
 			continue
 		}
 
-		fmt.Printlf("DEBUG: Parse file %s\n", path)
+		fmt.Printf("DEBUG: Parse file %s\n", path)
 
 		err = p.Parse(path)
 		if err != nil {
