@@ -72,6 +72,7 @@ func (p *Parser) Parse(path string) error {
 			continue
 		}
 
+		fmt.Printf("DEBUG: packages.Load(.., %s)\n", "file="+fpath)
 		pkgs, err := packages.Load(&p.conf, "file="+fpath)
 		if err != nil {
 			return err
