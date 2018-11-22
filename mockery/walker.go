@@ -33,6 +33,8 @@ func (this *Walker) Walk(visitor WalkerVisitor) (generated bool) {
 	}
 
 	for _, iface := range parser.Interfaces() {
+		fmt.Printf("DEBUG: Found interface %s\n", iface)
+
 		if !this.Filter.MatchString(iface.Name) {
 			continue
 		}
@@ -41,6 +43,8 @@ func (this *Walker) Walk(visitor WalkerVisitor) (generated bool) {
 			fmt.Fprintf(os.Stderr, "Error walking %s: %s\n", iface.Name, err)
 			os.Exit(1)
 		}
+
+		fmt.Printf("DEBUG: Generated for interface %s\n", iface)
 		generated = true
 		if this.LimitOne {
 			return
