@@ -28,7 +28,7 @@ func (this *Walker) Walk(visitor WalkerVisitor) (generated bool) {
 
 	err := parser.Load()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error walking: %v\n", err)
+		fmt.Fprintf(os.Stdout, "Error walking: %v\n", err)
 		os.Exit(1)
 	}
 
@@ -40,7 +40,7 @@ func (this *Walker) Walk(visitor WalkerVisitor) (generated bool) {
 		}
 		err := visitor.VisitWalk(iface)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error walking %s: %s\n", iface.Name, err)
+			fmt.Fprintf(os.Stdout, "Error walking %s: %s\n", iface.Name, err)
 			os.Exit(1)
 		}
 
@@ -91,7 +91,7 @@ func (this *Walker) doWalk(p *Parser, dir string, visitor WalkerVisitor) (genera
 		err = p.Parse(path)
 		if err != nil {
 			fmt.Printf("DEBUG: Parse error %s -- %v\n", path, err)
-			fmt.Fprintln(os.Stderr, "Error parsing file: ", err)
+			fmt.Fprintln(os.Stdout, "Error parsing file: ", err)
 			continue
 		}
 	}
