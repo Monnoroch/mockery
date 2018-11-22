@@ -51,12 +51,17 @@ func (this *Walker) Walk(visitor WalkerVisitor) (generated bool) {
 }
 
 func (this *Walker) doWalk(p *Parser, dir string, visitor WalkerVisitor) (generated bool) {
+	fmt.Printlf("DEBUG: Walk dir %s\n", dir)
+
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
 		return
 	}
 
+
 	for _, file := range files {
+		fmt.Printlf("DEBUG: Found file %s\n", file.Name())
+
 		if strings.HasPrefix(file.Name(), ".") || strings.HasPrefix(file.Name(), "_") {
 			continue
 		}
@@ -76,6 +81,8 @@ func (this *Walker) doWalk(p *Parser, dir string, visitor WalkerVisitor) (genera
 		if !strings.HasSuffix(path, ".go") || strings.HasSuffix(path, "_test.go") {
 			continue
 		}
+
+		fmt.Printlf("DEBUG: Parse file %s\n", path)
 
 		err = p.Parse(path)
 		if err != nil {
